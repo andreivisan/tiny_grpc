@@ -1,6 +1,6 @@
-# Makefile for kouka build tool
+# Makefile for tiny_grpc build tool
 
-TARGET = bin/risc_v
+TARGET = bin/tiny_grpc
 # Compiler and Flags
 CC     = gcc 
 CFLAGS = -Wall -Wextra -O2 -Iinclude
@@ -28,7 +28,7 @@ PREFIX    ?= /usr/local
 # Default target: build the project
 all: build
 
-# Build target: compile and link the executable risc_v
+# Build target: compile and link the executable tiny_grpc
 build: $(TARGET)
 
 $(TARGET): $(OBJ) | $(BIN_DIR)
@@ -47,13 +47,13 @@ clean:
 	rm -rf $(OBJ_DIR)/*
 	rm -rf $(BIN_DIR)/*
 
-# Install target: copy risc_v to $(PREFIX)/bin
+# Install target: copy tiny_grpc to $(PREFIX)/bin
 install: build
-	@echo "Installing risc_v to $(PREFIX)/bin"
+	@echo "Installing tiny_grpc to $(PREFIX)/bin"
 	mkdir -p $(PREFIX)/bin
 	cp $(TARGET) $(PREFIX)/bin
 
-# Test target: run the risc_v executable with the "test" subcommand.
+# Test target: run the tiny_grpc executable with the "test" subcommand.
 # (Your C program should interpret "test" and run its test suite.)
 test: $(TEST_EXES)
 	@echo "Running all tests..."
