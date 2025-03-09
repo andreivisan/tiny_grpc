@@ -60,5 +60,16 @@ bool pb_write_varint(uint64_t value, uint8_t *buffer, size_t size, size_t *bytes
 
         // Shift the value right by 7 bits
         value >>= 7;
-    }
+    
+        // If there are more bytes to come, set the most significant bit
+        if (value > 0) {
+            byte |= 0x80;
+        }
+
+        // Write the byte to the buffer
+        buffer[*bytes_written] = byte;
+        (*bytes_written)++;
+    } while (value > 0);
+
+    return true;
 }
